@@ -220,16 +220,20 @@ class Canvas(app.Canvas):
         app.Canvas.__init__(self, keys='interactive', size=(800, 600))
         ps = self.pixel_scale
 
-        d = pickle.load(open('data.pkl','rb'))
         points = []
         colors = []
-        for o in d.keys():
-            for p in d[o].keys():
-                for t in d[o][p]:
-                    for pt in t:
-                        points.append(pt[:3])
-                        colors.append([pt[3], pt[4], pt[5], 1])
+        #d = pickle.load(open('data.pkl','rb'))
+        # for o in d.keys():
+        #     for p in d[o].keys():
+        #         for t in d[o][p]:
+        #             for pt in t:
+        #                 points.append(pt[:3])
+        #                 colors.append([pt[3], pt[4], pt[5], 1])
 
+        plot_points = pickle.load(open('plot_points.pkl', 'rb'))
+        for p in plot_points:
+            points.append(p[:3])
+            colors.append([p[3], p[4], p[5], 1])
         # Create vertices
         print len(points), len(colors)
         n = len(points)
